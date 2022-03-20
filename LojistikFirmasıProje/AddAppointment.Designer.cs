@@ -133,6 +133,7 @@
             // cmbOnem
             // 
             this.cmbOnem.BackColor = System.Drawing.Color.Gray;
+            this.cmbOnem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOnem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.cmbOnem.ForeColor = System.Drawing.Color.White;
             this.cmbOnem.FormattingEnabled = true;
