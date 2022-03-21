@@ -30,13 +30,13 @@
         {
             this.btnEkle = new System.Windows.Forms.Button();
             this.txtKonu = new System.Windows.Forms.TextBox();
-            this.txtTarih = new System.Windows.Forms.TextBox();
             this.txtTur = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbOnem = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnEkle
@@ -61,16 +61,6 @@
             this.txtKonu.Name = "txtKonu";
             this.txtKonu.Size = new System.Drawing.Size(211, 26);
             this.txtKonu.TabIndex = 9;
-            // 
-            // txtTarih
-            // 
-            this.txtTarih.BackColor = System.Drawing.Color.Gray;
-            this.txtTarih.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTarih.ForeColor = System.Drawing.Color.White;
-            this.txtTarih.Location = new System.Drawing.Point(78, 47);
-            this.txtTarih.Name = "txtTarih";
-            this.txtTarih.Size = new System.Drawing.Size(211, 26);
-            this.txtTarih.TabIndex = 7;
             // 
             // txtTur
             // 
@@ -146,16 +136,25 @@
             this.cmbOnem.Size = new System.Drawing.Size(211, 28);
             this.cmbOnem.TabIndex = 14;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.White;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(78, 49);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(211, 24);
+            this.dateTimePicker1.TabIndex = 15;
+            // 
             // AddAppointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(301, 184);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cmbOnem);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.txtKonu);
-            this.Controls.Add(this.txtTarih);
             this.Controls.Add(this.txtTur);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -174,12 +173,12 @@
 
         private System.Windows.Forms.Button btnEkle;
         private System.Windows.Forms.TextBox txtKonu;
-        private System.Windows.Forms.TextBox txtTarih;
         private System.Windows.Forms.TextBox txtTur;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbOnem;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

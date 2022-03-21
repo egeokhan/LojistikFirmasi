@@ -29,7 +29,7 @@ namespace LojistikFirmasıProje
         }
         private void LoadExpeditions()
         {
-            seferList = SeferIslem.SearchWithDate(textBox1.Text); // textbox1.text = Date
+            seferList = SeferIslem.SearchWithDate(dateTimePicker1.Text); // textbox1.text = Date
         }
     }
 }

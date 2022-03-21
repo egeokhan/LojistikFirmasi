@@ -12,7 +12,7 @@ namespace LojistikFirmasıProje
     {
         #region Properties
         public string Tur { get; set; }
-        public string Tarih { get; set; }
+        public DateTime Tarih { get; set; }
         public string Konu { get; set; }
         public Onem Onem { get; set; }
         #endregion
@@ -20,7 +20,7 @@ namespace LojistikFirmasıProje
         public Appoitment(string tur, string tarih, string konu, Onem onem)
         {
             Tur = tur;
-            Tarih = tarih;
+            Tarih = Convert.ToDateTime(tarih);
             Konu = konu;
             Onem = onem;
         }

@@ -21,7 +21,7 @@ namespace LojistikFirmasıProje
         {
             string yer = txtYer.Text;
             string kategori = txtKategori.Text;
-            string tarih = txtTarih.Text;
+            string tarih = dateTimePicker1.Text;
             string sofor = txtSofor.Text;
             SeferIslem.SeferEkle(yer, kategori, tarih, sofor);
             MessageBox.Show("Sefer Eklendi!");

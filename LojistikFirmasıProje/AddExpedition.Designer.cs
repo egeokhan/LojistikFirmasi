@@ -35,8 +35,8 @@
             this.txtYer = new System.Windows.Forms.TextBox();
             this.txtKategori = new System.Windows.Forms.TextBox();
             this.txtSofor = new System.Windows.Forms.TextBox();
-            this.txtTarih = new System.Windows.Forms.TextBox();
             this.btnEkle = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -117,16 +117,6 @@
             this.txtSofor.Size = new System.Drawing.Size(192, 26);
             this.txtSofor.TabIndex = 3;
             // 
-            // txtTarih
-            // 
-            this.txtTarih.BackColor = System.Drawing.Color.Gray;
-            this.txtTarih.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtTarih.ForeColor = System.Drawing.Color.White;
-            this.txtTarih.Location = new System.Drawing.Point(88, 75);
-            this.txtTarih.Name = "txtTarih";
-            this.txtTarih.Size = new System.Drawing.Size(192, 26);
-            this.txtTarih.TabIndex = 2;
-            // 
             // btnEkle
             // 
             this.btnEkle.BackColor = System.Drawing.Color.Gray;
@@ -140,15 +130,24 @@
             this.btnEkle.UseVisualStyleBackColor = false;
             this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.White;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(88, 78);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(192, 22);
+            this.dateTimePicker1.TabIndex = 16;
+            // 
             // AddExpedition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(292, 181);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.txtSofor);
-            this.Controls.Add(this.txtTarih);
             this.Controls.Add(this.txtKategori);
             this.Controls.Add(this.txtYer);
             this.Controls.Add(this.label4);
@@ -173,7 +172,7 @@
         private System.Windows.Forms.TextBox txtYer;
         private System.Windows.Forms.TextBox txtKategori;
         private System.Windows.Forms.TextBox txtSofor;
-        private System.Windows.Forms.TextBox txtTarih;
         private System.Windows.Forms.Button btnEkle;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
