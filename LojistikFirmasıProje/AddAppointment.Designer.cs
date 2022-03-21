@@ -150,7 +150,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(304, 179);
+            this.ClientSize = new System.Drawing.Size(305, 179);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cmbOnem);
             this.Controls.Add(this.btnEkle);
