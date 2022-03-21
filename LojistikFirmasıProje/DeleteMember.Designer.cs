@@ -80,7 +80,7 @@
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DeleteMember";
-            this.Text = "DeleteMember";
+            this.Text = "Üye Sil";
             this.ResumeLayout(false);
             this.PerformLayout();
 

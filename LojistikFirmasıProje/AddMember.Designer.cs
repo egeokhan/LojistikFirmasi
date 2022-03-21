@@ -157,7 +157,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddMember";
-            this.Text = "AddMember";
+            this.Text = "Üye Ekle";
             this.ResumeLayout(false);
             this.PerformLayout();
 

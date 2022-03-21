@@ -128,7 +128,7 @@
             this.Controls.Add(this.txtYuzde);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MakeRaiseToPerson";
-            this.Text = "MakeRaiseToPerson";
+            this.Text = "Kişiye Zam Yap";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -158,7 +158,7 @@
             this.ForeColor = System.Drawing.Color.Gray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AddExpedition";
-            this.Text = "AddExpedition";
+            this.Text = "Sefer Ekle";
             this.ResumeLayout(false);
             this.PerformLayout();
 

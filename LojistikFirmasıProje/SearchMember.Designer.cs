@@ -146,7 +146,7 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SearchMember";
-            this.Text = "SearchMember";
+            this.Text = "Üye Ara";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
             this.ResumeLayout(false);

@@ -92,7 +92,7 @@
             this.Controls.Add(this.txtYuzde);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MakeRaise";
-            this.Text = "MakeRaise";
+            this.Text = "Herkese Zam Yap";
             this.ResumeLayout(false);
             this.PerformLayout();
 

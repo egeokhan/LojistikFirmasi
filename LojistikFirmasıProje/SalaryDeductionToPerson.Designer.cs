@@ -132,7 +132,7 @@
             this.Controls.Add(this.txtYuzde);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SalaryDeductionToPerson";
-            this.Text = "EditByPerson";
+            this.Text = "Kişiye Göre Maaş Düşür";
             this.ResumeLayout(false);
             this.PerformLayout();
 

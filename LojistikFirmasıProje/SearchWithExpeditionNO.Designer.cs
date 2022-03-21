@@ -155,7 +155,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SearchWithExpeditionNO";
-            this.Text = "SeferNoArama";
+            this.Text = "Sefer No\'ya Göre Arama";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
             this.ResumeLayout(false);

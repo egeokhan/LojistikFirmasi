@@ -196,7 +196,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "UpdateMember";
-            this.Text = "UpdateMember";
+            this.Text = "Üye Güncelle";
             this.ResumeLayout(false);
             this.PerformLayout();
 

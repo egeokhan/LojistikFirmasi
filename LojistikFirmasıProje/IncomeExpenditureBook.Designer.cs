@@ -105,7 +105,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "IncomeExpenditureBook";
-            this.Text = "IncomeExpenditureBook";
+            this.Text = "Gelir Giderler";
             this.Load += new System.EventHandler(this.IncomeExpenditureBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

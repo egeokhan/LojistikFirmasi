@@ -155,7 +155,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SearchWithPersonalID";
-            this.Text = "SearchWithPersonalID";
+            this.Text = "Personel ID\'sine Göre Arama";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
             this.ResumeLayout(false);

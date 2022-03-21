@@ -114,7 +114,7 @@
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ViewMembers";
-            this.Text = "ViewMembers";
+            this.Text = "Üyeleri Görüntüle";
             this.Load += new System.EventHandler(this.ViewMembers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();

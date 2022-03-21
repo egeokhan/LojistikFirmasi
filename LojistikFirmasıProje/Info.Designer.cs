@@ -96,7 +96,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Info";
-            this.Text = "Info";
+            this.Text = "Kullanım Bilgisi";
             this.ResumeLayout(false);
             this.PerformLayout();
 

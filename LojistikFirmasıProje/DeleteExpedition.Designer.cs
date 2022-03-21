@@ -79,7 +79,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DeleteExpedition";
-            this.Text = "DeleteExpedition";
+            this.Text = "Sefer Sil";
             this.ResumeLayout(false);
             this.PerformLayout();
 

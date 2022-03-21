@@ -123,7 +123,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "LoginScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoginScreen";
+            this.Text = "Giriş Yap";
             this.ResumeLayout(false);
             this.PerformLayout();
 
