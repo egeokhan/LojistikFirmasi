@@ -14,7 +14,7 @@ namespace LojistikFirmasıProje
         public string SeferNo { get; set; }
         public string Yer { get; set; }
         public string Kategori { get; set; }
-        public string Tarih { get; set; }
+        public DateTime Tarih { get; set; }
         public string Sofor { get; set; }
         #endregion
         #region Constructor Method
@@ -23,7 +23,7 @@ namespace LojistikFirmasıProje
             SeferNo = seferNo;
             Yer = yer;
             Kategori = kategori;
-            Tarih = tarih;
+            Tarih = Convert.ToDateTime(tarih);
             Sofor = sofor;
         }
         #endregion
