@@ -16,7 +16,7 @@ namespace LojistikFirmasıProje
         public string Konu { get; set; }
         public Onem Onem { get; set; }
         #endregion
-        #region Constructer Method
+        #region Constructor Method
         public Appoitment(string tur, string tarih, string konu, Onem onem)
         {
             Tur = tur;

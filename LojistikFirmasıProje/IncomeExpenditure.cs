@@ -10,11 +10,13 @@ namespace LojistikFirmasıProje
 {
     public class IncomeExpenditure
     {
+        #region Properties
         public string Tur { get; set; }
         public GelirGider GelirGider { get; set; }
         public DateTime Tarih { get; set; }
         public int Miktar { get; set; }
-
+        #endregion
+        #region Constructor Method
         public IncomeExpenditure(string tur, GelirGider gelirGider, DateTime tarih, int miktar)
         {
             Tur = tur;
@@ -22,8 +24,11 @@ namespace LojistikFirmasıProje
             Tarih = tarih;
             Miktar = miktar;
         }
+        #endregion
+        #region File Name
         static string filename = "GelirGider.txt";
-
+        #endregion
+        #region Methods
         public static List<IncomeExpenditure> LoadDatas()
         {
             List<IncomeExpenditure> ieList = new List<IncomeExpenditure>();
@@ -45,5 +50,6 @@ namespace LojistikFirmasıProje
             sw.WriteLine($"Toplu Maaş;1;{DateTime.Now.Date};{miktar}");
             sw.Close();
         }
+        #endregion
     }
 }
