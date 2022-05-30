@@ -23,6 +23,21 @@ namespace LojistikFirmasıProje
         {
             LoadDatas();
             Connection();
+            decimal toplamGelir = 0;
+            decimal toplamGider = 0;
+            foreach (var ie in _ieList)
+            {
+                if (ie.GelirGider == GelirGider.Gelir)
+                {
+                    toplamGelir += ie.Miktar;
+                }
+                else if (ie.GelirGider == GelirGider.Gider)
+                {
+                    toplamGider += ie.Miktar;
+                }
+            }
+            lblGider.Text = toplamGider.ToString();
+            lblGelir.Text = toplamGelir.ToString();
         }
         private void LoadDatas() => _ieList = IncomeExpenditure.LoadDatas();
 

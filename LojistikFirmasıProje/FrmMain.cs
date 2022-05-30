@@ -158,26 +158,6 @@ namespace LojistikFirmasıProje
             ieb.Show();
         }
 
-        private void maaşVerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IncomeExpenditure.GiveSalary();
-            MessageBox.Show("Maaşlar verildi!");
-        }
-
-        private void zamYapToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MakeRaise mr = new MakeRaise();
-            mr.MdiParent = this;
-            mr.Show();
-        }
-
-        private void kişiyeGöreZamYapToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MakeRaiseToPerson mrtp = new MakeRaiseToPerson();
-            mrtp.MdiParent = this;
-            mrtp.Show();
-        }
-
         private void kişiyeGöreDüzenleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SalaryDeductionToPerson sdtp = new SalaryDeductionToPerson();
@@ -190,6 +170,26 @@ namespace LojistikFirmasıProje
             SalaryDeduction sd = new SalaryDeduction();
             sd.MdiParent = this;
             sd.Show();
+        }
+
+        private void maaşlarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IncomeExpenditure.GiveSalary();
+            MessageBox.Show("Maaşlar verildi!");
+        }
+
+        private void gelirEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmGelirEkle frm = new FrmGelirEkle();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void giderEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmGiderEkle frm = new FrmGiderEkle();
+            frm.MdiParent = this;
+            frm.Show();
         }
     }
 }

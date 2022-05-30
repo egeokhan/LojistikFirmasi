@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,24 +12,32 @@ namespace LojistikFirmasıProje
     public class User
     {
         #region Variables
-        string username,password;
+        public string Username { get; set; }
+        public string Password { get; set; }
         #endregion
         #region Constructer Method
         public User(string username, string password)
         {
-            this.username = username;
-            this.password = password;
+            this.Username = username;
+            this.Password = password;
         }
         #endregion
+        static string connectionString = ConnectionString.Get();
         #region Methods
-        public bool GirisKontrol()
+        public bool GirisKontrol(User kullanici)
         {
-            string path = Path.Combine(Application.StartupPath, "Users.txt");
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Giris";
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                string[] split = lines[i].Split(';');
-                if (split[0] == username && split[1] == password) return true;
+                User veridekiKullanici = new User(reader["KullaniciAdi"].ToString(), reader["Sifre"].ToString());
+                if (veridekiKullanici.Username == kullanici.Username && veridekiKullanici.Password == kullanici.Password)
+                {
+                    return true;
+                }
             }
             return false;
         }

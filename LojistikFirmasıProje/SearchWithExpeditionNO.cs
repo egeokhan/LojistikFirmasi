@@ -12,7 +12,7 @@ namespace LojistikFirmasıProje
 {
     public partial class SearchWithExpeditionNO : Form
     {
-        List<SeferIslem> seferList;
+        List<SeferIslem> sefer;
         public SearchWithExpeditionNO()
         {
             InitializeComponent();
@@ -22,8 +22,8 @@ namespace LojistikFirmasıProje
             LoadExpeditions();
             Connection();
         }
-        private void Connection() => bs.DataSource = seferList;
-        private void LoadExpeditions() => seferList = SeferIslem.SearchWithExpeditionNumber(textBox1.Text); // textbox1.text = expedition number
+        private void Connection() => bs.DataSource = sefer;
+        private void LoadExpeditions() => sefer = SeferIslem.SearchWithExpeditionNumber(textBox1.Text); // textbox1.text = expedition number
         private void button2_Click(object sender, EventArgs e) => this.Close();
     }
 }

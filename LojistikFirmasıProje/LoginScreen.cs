@@ -21,7 +21,7 @@ namespace LojistikFirmasıProje
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             User user = new User(username, password);
-            bool login = user.GirisKontrol();
+            bool login = user.GirisKontrol(user);
             if (login) DialogResult = DialogResult.OK;
             else MessageBox.Show("Geçersiz giriş bilgileri...");
         }

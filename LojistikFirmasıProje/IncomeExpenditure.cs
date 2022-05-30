@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,11 @@ namespace LojistikFirmasıProje
         public string Tur { get; set; }
         public GelirGider GelirGider { get; set; }
         public DateTime Tarih { get; set; }
-        public int Miktar { get; set; }
+        public decimal Miktar { get; set; }
         #endregion
+        static string connectionString = ConnectionString.Get();
         #region Constructor Method
-        public IncomeExpenditure(string tur, GelirGider gelirGider, DateTime tarih, int miktar)
+        public IncomeExpenditure(string tur, GelirGider gelirGider, DateTime tarih, decimal miktar)
         {
             Tur = tur;
             GelirGider = gelirGider;
@@ -25,30 +27,59 @@ namespace LojistikFirmasıProje
             Miktar = miktar;
         }
         #endregion
-        #region File Name
-        static string filename = "GelirGider.txt";
-        #endregion
         #region Methods
         public static List<IncomeExpenditure> LoadDatas()
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<IncomeExpenditure> ieList = new List<IncomeExpenditure>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM GelirGider";
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                string[] split = lines[i].Split(';');
-                IncomeExpenditure ie = new IncomeExpenditure(split[0], (GelirGider)int.Parse(split[1]), Convert.ToDateTime(split[2]), int.Parse(split[3]));
-                ieList.Add(ie);
+                IncomeExpenditure iE = new IncomeExpenditure(reader["Tur"].ToString(),(GelirGider)int.Parse(reader["GelirGider"].ToString()),Convert.ToDateTime(reader["Tarih"].ToString()),Convert.ToDecimal(reader["Miktar"].ToString()));
+                ieList.Add(iE);
             }
             return ieList;
         }
         public static void GiveSalary()
         {
             List<Member> memberList = Member.LoadMembers();
-            int miktar = memberList.Sum(m => int.Parse(m.Maas));
-            StreamWriter sw = new StreamWriter(filename, true);
-            sw.WriteLine($"Toplu Maaş;1;{DateTime.Now.Date};{miktar}");
-            sw.Close();
+            decimal miktar = memberList.Sum(m => decimal.Parse(m.Maas));
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO GelirGider(Tur,GelirGider,Tarih,Miktar) VALUES(@Tur,@GelirGider,@Tarih,@Miktar)";
+            command.Parameters.AddWithValue("@Tur", "Toplu Maaş");
+            command.Parameters.AddWithValue("@GelirGider", 1);
+            command.Parameters.AddWithValue("@Tarih", DateTime.Now.Date);
+            command.Parameters.AddWithValue("@Miktar", miktar);
+            command.ExecuteNonQuery();
+        }
+        public static void GelirEkle(string tur,DateTime tarih,int miktar)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO GelirGider(Tur,GelirGider,Tarih,Miktar) VALUES(@Tur,@GelirGider,@Tarih,@Miktar)";
+            command.Parameters.AddWithValue("@Tur", tur);
+            command.Parameters.AddWithValue("@GelirGider", 0);
+            command.Parameters.AddWithValue("@Tarih", tarih);
+            command.Parameters.AddWithValue("@Miktar", miktar);
+            command.ExecuteNonQuery();
+        }
+        public static void GiderEkle(string tur, DateTime tarih, int miktar)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO GelirGider(Tur,GelirGider,Tarih,Miktar) VALUES(@Tur,@GelirGider,@Tarih,@Miktar)";
+            command.Parameters.AddWithValue("@Tur", tur);
+            command.Parameters.AddWithValue("@GelirGider", 1);
+            command.Parameters.AddWithValue("@Tarih", tarih);
+            command.Parameters.AddWithValue("@Miktar", miktar);
+            command.ExecuteNonQuery();
         }
         #endregion
     }

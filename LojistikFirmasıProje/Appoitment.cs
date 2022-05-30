@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,31 +26,34 @@ namespace LojistikFirmasıProje
             Onem = onem;
         }
         #endregion
-        #region File Name
-        static string filename = "Appoitments.txt";
-        #endregion
+        static string connectionString = ConnectionString.Get();
         #region Methods
         public static List<Appoitment> LoadAppointmens()
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<Appoitment> randevuList = new List<Appoitment>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Gorusmeler";
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                string[] split = lines[i].Split(';');
-                Appoitment randevu = new Appoitment(split[0], split[1], split[2], (Onem)int.Parse(split[3]));
-                randevuList.Add(randevu);
+                Appoitment appointment = new Appoitment(reader["Tur"].ToString(), reader["Tarih"].ToString(), reader["Konu"].ToString(), (Onem)(int.Parse(reader["Onem"].ToString())));
+                randevuList.Add(appointment);
             }
             return randevuList;
-
         }
-        public static void AddAppointment(string tur, string tarih, string konu, int onem)
+        public static void AddAppointment(string tur, DateTime tarih, string konu, int onem)
         {
-            string path = Path.Combine(Application.StartupPath, filename);
-            string line = $"{tur};{tarih};{konu};{onem}";
-            StreamWriter sw = new StreamWriter(path, true);
-            sw.WriteLine(line);
-            sw.Close();
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO Gorusmeler(Tur,Tarih,Konu,Onem) VALUES(@Tur,@Tarih,@Konu,@Onem)";
+            command.Parameters.AddWithValue("@Tur", tur);
+            command.Parameters.AddWithValue("@Tarih", tarih);
+            command.Parameters.AddWithValue("@Konu", konu);
+            command.Parameters.AddWithValue("@Onem", onem);
+            command.ExecuteNonQuery();
         }
         #endregion
     }

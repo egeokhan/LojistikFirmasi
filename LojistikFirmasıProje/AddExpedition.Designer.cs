@@ -81,11 +81,11 @@
             this.label4.BackColor = System.Drawing.Color.Gray;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(27, 107);
+            this.label4.Location = new System.Drawing.Point(5, 109);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 24);
+            this.label4.Size = new System.Drawing.Size(81, 24);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Şoför:";
+            this.label4.Text = "Şoför ID:";
             // 
             // txtYer
             // 

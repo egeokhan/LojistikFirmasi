@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace LojistikFirmasıProje
 {
-    public partial class AddAppointment : Form
+    public partial class FrmGiderEkle : Form
     {
-        public AddAppointment()
+        public FrmGiderEkle()
         {
             InitializeComponent();
         }
-        private void AddAppointment_Load(object sender, EventArgs e) => cmbOnem.SelectedIndex = 0;
+
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            Appoitment.AddAppointment(txtTur.Text,dateTimePicker1.Value, txtKonu.Text, cmbOnem.SelectedIndex);
-            MessageBox.Show("Görüşme başarıyla eklendi.");
+            IncomeExpenditure.GiderEkle(txtTur.Text, txtTarih.Value, int.Parse(txtMiktar.Text));
+            MessageBox.Show("Eklendi!");
             this.Close();
         }
     }

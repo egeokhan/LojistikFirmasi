@@ -64,6 +64,19 @@
     <Compile Include="AddMember.Designer.cs">
       <DependentUpon>AddMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnectionString.cs" />
+    <Compile Include="FrmGelirEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGelirEkle.Designer.cs">
+      <DependentUpon>FrmGelirEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGiderEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGiderEkle.Designer.cs">
+      <DependentUpon>FrmGiderEkle.cs</DependentUpon>
+    </Compile>
     <Compile Include="SalaryDeduction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +214,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddMember.resx">
       <DependentUpon>AddMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGelirEkle.resx">
+      <DependentUpon>FrmGelirEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGiderEkle.resx">
+      <DependentUpon>FrmGiderEkle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SalaryDeduction.resx">
       <DependentUpon>SalaryDeduction.cs</DependentUpon>

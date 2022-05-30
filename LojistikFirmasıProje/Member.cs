@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace LojistikFirmasıProje
         public string Departman { get; set; }
         public string Maas { get; set; }
         #endregion
+        static string connectionString = ConnectionString.Get();
         #region Constructer Method
         public Member(string id,string name, string departman, string iletisim, string maas)
         {
@@ -26,183 +28,161 @@ namespace LojistikFirmasıProje
             Iletisim = iletisim;
             Maas = maas;
         }
-        #endregion
-        #region File Name
-        static string filename = "Members.txt";
+        public Member()
+        {
+        }
         #endregion
         #region Methods
         public static List<Member> LoadMembers()
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<Member> memberList = new List<Member>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            foreach (string line in lines)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Uyeler";
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                string[] split = line.Split(';');
-                Member member = new Member(split[0], split[1], split[2], split[3], split[4]);
-                memberList.Add(member);
+                Member uye = new Member(reader["MemberId"].ToString(),reader["AdSoyad"].ToString(),reader["Departman"].ToString(),reader["Iletisim"].ToString(),reader["Maas"].ToString());
+                memberList.Add(uye);
             }
             return memberList;
         }
         public static void AddMember(string adsoyad, string departman, string iletisim, string maas)
         {
-            string id = "0";
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            if (lines.Length == 0) id = "0";
-            else
-            {
-                for (int i = lines.Length - 1; i < lines.Length; i++)
-                {
-                    string[] split = lines[i].Split(';');
-                    id = (int.Parse(split[0]) + 1).ToString();
-                }
-            }
-            string line = $"{id};{adsoyad};{departman};{iletisim};{maas}";
-            StreamWriter sw = new StreamWriter(path, true);
-            sw.WriteLine(line);
-            sw.Close();
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO Uyeler(AdSoyad,Departman,Iletisim,Maas) VALUES(@AdSoyad,@Departman,@Iletisim,@Maas)";
+            command.Parameters.AddWithValue("@AdSoyad", adsoyad);
+            command.Parameters.AddWithValue("@Departman", departman);
+            command.Parameters.AddWithValue("@Iletisim", iletisim);
+            command.Parameters.AddWithValue("@Maas", decimal.Parse(maas));
+            command.ExecuteNonQuery();
         }
         public static void DeleteMember(string id)
         {
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            List<Member> memberList = new List<Member>();
-            for (int i = 0; i < lines.Length; i++)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[0] != id)
-                {
-                    Member member = new Member(split[0], split[1], split[2], split[3], split[4]);
-                    memberList.Add(member);
-                }
+                command.CommandText = "DELETE FROM Uyeler WHERE MemberId = @Id";
+                command.Parameters.AddWithValue("@Id", int.Parse(id));
+                command.ExecuteNonQuery();
             }
-            StreamWriter clear = new StreamWriter(path);
-            clear.Write("");
-            clear.Close();
-            StreamWriter writeNewDatas = new StreamWriter(path, true);
-            foreach (var member in memberList)
+            catch (Exception)
             {
-                string line = $"{member.ID};{member.AdSoyad};{member.Departman};{member.Iletisim};{member.Maas}";
-                writeNewDatas.WriteLine(line);
             }
-            writeNewDatas.Close();
         }
         public static void UpdateMember(string id, string adsoyad, string departman, string iletisim, string maas)
         {
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            List<Member> memberList = new List<Member>();
-            for (int i = 0; i < lines.Length; i++)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[0] != id)
-                {
-                    Member member = new Member(split[0], split[1], split[2], split[3], split[4]);
-                    memberList.Add(member);
-                }
-                else
-                {
-                    Member member = new Member(id,adsoyad, departman, iletisim, maas);
-                    memberList.Add(member);
-                }
+                command.CommandText = "UPDATE Uyeler SET AdSoyad = @AdSoyad, Departman = @Departman, Iletisim = @Iletisim, Maas = @Maas WHERE MemberId = @Id";
+                command.Parameters.AddWithValue("@Id", id);
+                command.Parameters.AddWithValue("@AdSoyad", adsoyad);
+                command.Parameters.AddWithValue("@Departman", departman);
+                command.Parameters.AddWithValue("@Iletisim", iletisim);
+                command.Parameters.AddWithValue("@Maas", decimal.Parse(maas));
+                command.ExecuteNonQuery();
             }
-            StreamWriter clear = new StreamWriter(path);
-            clear.Write("");
-            clear.Close();
-            StreamWriter writeNewDatas = new StreamWriter(path, true);
-            foreach (var member in memberList)
+            catch (Exception)
             {
-                string line = $"{member.ID};{member.AdSoyad};{member.Departman};{member.Iletisim};{member.Maas}";
-                writeNewDatas.WriteLine(line);
             }
-            writeNewDatas.Close();
-
         }
         public static Member FindMember(string id)
         {
-            Member aranan = new Member("","","","","");
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            foreach (string line in lines)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            Member uye = new Member();
+            try
             {
-                string[] split = line.Split(';');
-                if(split[0] == id) aranan = new Member(split[0],split[1],split[2],split[3],split[4]);
+                command.CommandText = "SELECT * FROM Uyeler WHERE MemberId = @MemberId";
+                command.Parameters.AddWithValue("@MemberId", int.Parse(id));
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    uye = new Member(reader["MemberId"].ToString(), reader["AdSoyad"].ToString(), reader["Departman"].ToString(), reader["Iletisim"].ToString(), reader["Maas"].ToString());
+                }
+                return uye;
             }
-            return aranan;
+            catch (Exception)
+            {
+                return uye;
+            }
         }
         public static void MakeRaise(double percent)
         {
-            List<Member> memberList;
-            memberList = Member.LoadMembers();
-            List<Member> newMemberList = new List<Member>();
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            List<Member> memberList = Member.LoadMembers();
             foreach (var member in memberList)
             {
-                member.Maas = (Math.Round(Convert.ToDouble(member.Maas) + (Convert.ToDouble(member.Maas) * (Convert.ToDouble(percent) / 100)),2)).ToString();
+                double yenimaas = double.Parse(member.Maas) + (double.Parse(member.Maas) * (percent / 100));
+                command.CommandText = $"UPDATE Uyeler SET Maas = @Maas WHERE MemberId = '{member.ID}'";
+                command.Parameters.AddWithValue("@Maas", yenimaas);
             }
-            StreamWriter clear = new StreamWriter(filename);
-            clear.Write("");
-            clear.Close();
-            StreamWriter sw = new StreamWriter(filename,true);
-            foreach (var member in memberList)
-            {
-                sw.WriteLine($"{member.ID};{member.AdSoyad};{member.Departman};{member.Iletisim};{member.Maas}");
-            }
-            sw.Close();
+            command.ExecuteNonQuery();
         }
         public static void MakeRaiseToPerson(int percent,string id)
         {
-            List<Member> memberList;
-            memberList = Member.LoadMembers();
-            foreach (Member member in memberList)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            List<Member> memberList = Member.LoadMembers();
+            Member member = memberList.FirstOrDefault(x => x.ID == id);
+            double yenimaas = double.Parse(member.Maas) + (double.Parse(member.Maas) * (percent / 100));
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                if (member.ID == id) member.Maas = (Math.Round(Convert.ToDouble(member.Maas) + (Convert.ToDouble(member.Maas) * (Convert.ToDouble(percent) / 100)), 2)).ToString();
+                command.CommandText = "UPDATE Uyeler SET Maas = @Maas WHERE MemberId = @Id";
+                command.Parameters.AddWithValue("@MemberId", member.ID);
+                command.Parameters.AddWithValue("@Maas", yenimaas);
+                command.ExecuteNonQuery();
             }
-            StreamWriter clear = new StreamWriter(filename);
-            clear.Write("");
-            clear.Close();
-            StreamWriter sw = new StreamWriter(filename, true);
-            foreach (var member in memberList)
+            catch (Exception)
             {
-                sw.WriteLine($"{member.ID};{member.AdSoyad};{member.Departman};{member.Iletisim};{member.Maas}");
             }
-            sw.Close();
         }
         public static void SalaryDeductionToPerson(int percent,string id)
         {
-            List<Member> memberList;
-            memberList = Member.LoadMembers();
-            foreach (Member member in memberList)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            List<Member> memberList = Member.LoadMembers();
+            Member member = memberList.FirstOrDefault(x => x.ID == id);
+            double yenimaas = double.Parse(member.Maas) - (double.Parse(member.Maas) * (percent / 100));
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                if(member.ID == id) member.Maas = (Math.Round(Convert.ToDouble(member.Maas) - (Convert.ToDouble(member.Maas) * (Convert.ToDouble(percent) / 100)), 2)).ToString();
+                command.CommandText = "UPDATE Uyeler SET Maas = @Maas WHERE MemberId = @Id";
+                command.Parameters.AddWithValue("@MemberId", member.ID);
+                command.Parameters.AddWithValue("@Maas", yenimaas);
+                command.ExecuteNonQuery();
             }
-            StreamWriter clear = new StreamWriter(filename);
-            clear.Write("");
-            clear.Close();
-            StreamWriter sw = new StreamWriter(filename, true);
-            foreach (var member in memberList)
+            catch (Exception)
             {
-                sw.WriteLine($"{member.ID};{member.AdSoyad};{member.Departman};{member.Iletisim};{member.Maas}");
             }
-            sw.Close();
+
         }
         public static void SalaryDeduction(int percent)
         {
-            List<Member> memberList;
-            memberList = Member.LoadMembers();
-            foreach (Member member in memberList)
-            {
-                member.Maas = (Math.Round(Convert.ToDouble(member.Maas) - (Convert.ToDouble(member.Maas) * (Convert.ToDouble(percent) / 100)), 2)).ToString();
-            }
-            StreamWriter clear = new StreamWriter(filename);
-            clear.Write("");
-            clear.Close();
-            StreamWriter sw = new StreamWriter(filename, true);
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            List<Member> memberList = Member.LoadMembers();
             foreach (var member in memberList)
             {
-                sw.WriteLine($"{member.ID};{member.AdSoyad};{member.Departman};{member.Iletisim};{member.Maas}");
+                double yenimaas = double.Parse(member.Maas) - (double.Parse(member.Maas) * (percent / 100));
+                command.CommandText = "UPDATE Uyeler SET Maas = @Maas WHERE MemberId = @Id";
+                command.Parameters.AddWithValue("@MemberId", member.ID);
+                command.Parameters.AddWithValue("@Maas", yenimaas);
+                command.ExecuteNonQuery();
             }
-            sw.Close();
         }
         #endregion
     }

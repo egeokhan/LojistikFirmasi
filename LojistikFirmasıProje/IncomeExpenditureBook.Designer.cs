@@ -30,14 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.bs = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.bs)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblGider = new System.Windows.Forms.Label();
+            this.lblGelir = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.bs = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bs)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -66,7 +70,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(446, 381);
+            this.dataGridView1.Size = new System.Drawing.Size(446, 363);
             this.dataGridView1.TabIndex = 12;
             // 
             // Column1
@@ -97,19 +101,65 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(175, 366);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Toplam Gider:";
+            // 
+            // lblGider
+            // 
+            this.lblGider.AutoSize = true;
+            this.lblGider.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblGider.Location = new System.Drawing.Point(254, 366);
+            this.lblGider.Name = "lblGider";
+            this.lblGider.Size = new System.Drawing.Size(19, 13);
+            this.lblGider.TabIndex = 14;
+            this.lblGider.Text = "<>";
+            // 
+            // lblGelir
+            // 
+            this.lblGelir.AutoSize = true;
+            this.lblGelir.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblGelir.Location = new System.Drawing.Point(87, 366);
+            this.lblGelir.Name = "lblGelir";
+            this.lblGelir.Size = new System.Drawing.Size(19, 13);
+            this.lblGelir.TabIndex = 16;
+            this.lblGelir.Text = "<>";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.Window;
+            this.label4.Location = new System.Drawing.Point(12, 366);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Toplam Gelir:";
+            // 
             // IncomeExpenditureBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 375);
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.ClientSize = new System.Drawing.Size(445, 383);
+            this.Controls.Add(this.lblGelir);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblGider);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "IncomeExpenditureBook";
             this.Text = "Gelir Giderler";
             this.Load += new System.EventHandler(this.IncomeExpenditureBook_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -120,5 +170,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblGider;
+        private System.Windows.Forms.Label lblGelir;
+        private System.Windows.Forms.Label label4;
     }
 }

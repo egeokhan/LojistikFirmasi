@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,162 +12,186 @@ namespace LojistikFirmasıProje
     public class SeferIslem
     {
         #region Properties
-        public string SeferNo { get; set; }
+        public string SeferId { get; set; }
         public string Yer { get; set; }
         public string Kategori { get; set; }
         public DateTime Tarih { get; set; }
         public string Sofor { get; set; }
         #endregion
         #region Constructor Method
-        public SeferIslem(string seferNo, string yer, string kategori, string tarih, string sofor)
+        public SeferIslem(string seferId, string yer, string kategori, string tarih, string sofor)
         {
-            SeferNo = seferNo;
+            SeferId = seferId;
             Yer = yer;
             Kategori = kategori;
             Tarih = Convert.ToDateTime(tarih);
             Sofor = sofor;
         }
+        public SeferIslem()
+        {
+        }
         #endregion
-        #region File Name
-        static string filename = "Seferler.txt";
-        #endregion
+        static string connectionString = ConnectionString.Get();
+
         #region Methods
         public static void SeferEkle(string yer,string kategori,string tarih,string sofor)
         {
-            string seferno = "0";
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            if (lines.Length == 0) seferno = "0";
-            else
-            {
-                for (int i = lines.Length-1; i < lines.Length; i++)
-                {
-                    string[] split = lines[i].Split(';');
-                    seferno = (int.Parse(split[0]) + 1).ToString();
-                }
-            }
-            string line = $"{seferno};{yer};{kategori};{tarih};{sofor}";
-            StreamWriter sw = new StreamWriter(path,true);
-            sw.WriteLine(line);
-            sw.Close();
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "INSERT INTO Seferler(Yer,Kategori,Tarih,Sofor) VALUES(@Yer,@Kategori,@Tarih,@Sofor)";
+            command.Parameters.AddWithValue("@Yer", yer);
+            command.Parameters.AddWithValue("@Kategori", kategori);
+            command.Parameters.AddWithValue("@Tarih", Convert.ToDateTime(tarih));
+            command.Parameters.AddWithValue("@Sofor", sofor);
+            command.ExecuteNonQuery();
         }
         public static List<SeferIslem> SeferleriGoruntule()
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<SeferIslem> seferList = new List<SeferIslem>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                SeferIslem sefer = new SeferIslem(split[0],split[1],split[2],split[3],split[4]);
-                seferList.Add(sefer);
+                command.CommandText = "SELECT * FROM Seferler";
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    SeferIslem sefer = new SeferIslem(reader["SeferId"].ToString(), reader["Yer"].ToString(), reader["Kategori"].ToString(), reader["Tarih"].ToString(), reader["Sofor"].ToString());
+                    seferList.Add(sefer);
+                }
+                return seferList;
             }
-            return seferList;
+            catch (Exception)
+            {
+                return seferList;
+            }
         }
         public static void SeferSil(string seferno) 
         {
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            List<SeferIslem> seferList = new List<SeferIslem>();
-            for (int i = 0; i < lines.Length; i++)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[0] != seferno)
-                {
-                    SeferIslem sefer = new SeferIslem(split[0], split[1], split[2], split[3], split[4]);
-                    seferList.Add(sefer);
-                }
+                command.CommandText = "DELETE FROM Seferler WHERE SeferId = @SeferId";
+                command.Parameters.AddWithValue("@SeferId", int.Parse(seferno));
+                command.ExecuteNonQuery();
             }
-            StreamWriter clear = new StreamWriter(path);
-            clear.Write("");
-            clear.Close();
-            StreamWriter writeNewDatas = new StreamWriter(path,true);
-            foreach (var sefer in seferList)
+            catch (Exception)
             {
-                string line = $"{sefer.SeferNo};{sefer.Yer};{sefer.Kategori};{sefer.Tarih};{sefer.Sofor}";
-                writeNewDatas.WriteLine(line);
             }
-            writeNewDatas.Close();
         }
         public static List<SeferIslem> SearchWithExpeditionNumber(string seferno)
         {
             List<SeferIslem> seferList = new List<SeferIslem>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Seferler WHERE SeferId = @SeferId";
+            command.Parameters.AddWithValue("@SeferId", seferno);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
             {
-                string[] split = lines[i].Split(';');
-                if(split[0] == seferno)
-                {
-                    SeferIslem sefer = new SeferIslem(split[0], split[1], split[2], split[3], split[4]);
-                    seferList.Add(sefer);
-                }
+                SeferIslem sefer = new SeferIslem(reader["SeferId"].ToString(), reader["Yer"].ToString(), reader["Kategori"].ToString(), reader["Tarih"].ToString(), reader["Sofor"].ToString());
+                seferList.Add(sefer);
             }
             return seferList;
         }
         public static List<SeferIslem> SearchWithDate(string date)
-        {
+        {                                       
+            SqlConnection conn = new SqlConnection(connectionString);
             List<SeferIslem> seferList = new List<SeferIslem>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[3] == date)
+                command.CommandText = "SELECT * FROM Seferler WHERE Tarih = @Tarih";
+                command.Parameters.AddWithValue("@Tarih", Convert.ToDateTime(date));
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    SeferIslem sefer = new SeferIslem(split[0], split[1], split[2], split[3], split[4]);
+                    SeferIslem sefer = new SeferIslem(reader["SeferId"].ToString(), reader["Yer"].ToString(), reader["Kategori"].ToString(), reader["Tarih"].ToString(), reader["Sofor"].ToString());
                     seferList.Add(sefer);
                 }
+                return seferList;
             }
-            return seferList;
+            catch (Exception)
+            {
+                return seferList;
+            }
+
         }
         public static List<SeferIslem> SearchWithPersonalID(string id)
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<SeferIslem> seferList = new List<SeferIslem>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[4] == id)
+                command.CommandText = "SELECT * FROM Seferler WHERE Sofor = @Sofor";
+                command.Parameters.AddWithValue("@Sofor", id);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    SeferIslem sefer = new SeferIslem(split[0], split[1], split[2], split[3], split[4]);
+                    SeferIslem sefer = new SeferIslem(reader["SeferId"].ToString(), reader["Yer"].ToString(), reader["Kategori"].ToString(), reader["Tarih"].ToString(), reader["Sofor"].ToString());
                     seferList.Add(sefer);
                 }
+                return seferList;
             }
-            return seferList;
+            catch (Exception)
+            {
+                return seferList;
+            }
         }
         public static List<SeferIslem> SearchWithLocation(string location)
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<SeferIslem> seferList = new List<SeferIslem>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[1] == location)
+                command.CommandText = "SELECT * FROM Seferler WHERE Yer = @Yer";
+                command.Parameters.AddWithValue("@Yer", location);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    SeferIslem sefer = new SeferIslem(split[0], split[1], split[2], split[3], split[4]);
+                    SeferIslem sefer = new SeferIslem(reader["SeferId"].ToString(), reader["Yer"].ToString(), reader["Kategori"].ToString(), reader["Tarih"].ToString(), reader["Sofor"].ToString());
                     seferList.Add(sefer);
                 }
+                return seferList;
             }
-            return seferList;
+            catch (Exception)
+            {
+                return seferList;
+            }
+
         }
         public static List<SeferIslem> SearchWithCategory(string category)
         {
+            SqlConnection conn = new SqlConnection(connectionString);
             List<SeferIslem> seferList = new List<SeferIslem>();
-            string path = Path.Combine(Application.StartupPath, filename);
-            string[] lines = File.ReadAllLines(path);
-            for (int i = 0; i < lines.Length; i++)
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            try
             {
-                string[] split = lines[i].Split(';');
-                if (split[2] == category)
+                command.CommandText = "SELECT * FROM Seferler WHERE Kategori = @Kategori";
+                command.Parameters.AddWithValue("@Kategori", category);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    SeferIslem sefer = new SeferIslem(split[0], split[1], split[2], split[3], split[4]);
+                    SeferIslem sefer = new SeferIslem(reader["SeferId"].ToString(), reader["Yer"].ToString(), reader["Kategori"].ToString(), reader["Tarih"].ToString(), reader["Sofor"].ToString());
                     seferList.Add(sefer);
                 }
+                return seferList;
             }
-            return seferList;
+            catch (Exception)
+            {
+                return seferList;
+            }
         }
         #endregion
     }

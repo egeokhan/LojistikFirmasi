@@ -20,6 +20,11 @@ namespace LojistikFirmasıProje
         private void button1_Click(object sender, EventArgs e)
         {
             FindMember();
+            if (aranan.ID is null)
+            {
+                MessageBox.Show("Bulunamadı.");
+                return;
+            }
             Connect();
         }
         private void Connect() => bs.DataSource = aranan;
