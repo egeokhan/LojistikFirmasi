@@ -10,18 +10,17 @@ using System.Windows.Forms;
 
 namespace LojistikFirmasıProje
 {
-    public partial class DeleteExpedition : Form
+    public partial class ChangeServerAdress : Form
     {
-        public DeleteExpedition()
+        public ChangeServerAdress()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string seferno = txtSeferNo.Text;
-            SeferIslem.SeferSil(seferno);
-            MessageBox.Show("Sefer Silindi.");
+            ConnectionString.Set(textBox1.Text);
+            MessageBox.Show($"Sunucu adı '{textBox1.Text}' olarak değiştirildi");
             this.Close();
         }
     }

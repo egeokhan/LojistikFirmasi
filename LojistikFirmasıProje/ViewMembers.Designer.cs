@@ -31,14 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bs = new System.Windows.Forms.BindingSource(this.components);
+            this.ıDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adSoyadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ıletisimDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.silToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.güncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -49,11 +53,12 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5});
+            this.ıDDataGridViewTextBoxColumn,
+            this.adSoyadDataGridViewTextBoxColumn,
+            this.ıletisimDataGridViewTextBoxColumn,
+            this.departmanDataGridViewTextBoxColumn,
+            this.maasDataGridViewTextBoxColumn});
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.DataSource = this.bs;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.WindowFrame;
@@ -71,40 +76,70 @@
             this.dataGridView1.Size = new System.Drawing.Size(554, 409);
             this.dataGridView1.TabIndex = 10;
             // 
-            // Column1
+            // bs
             // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.bs.DataSource = typeof(LojistikFirmasıProje.Member);
             // 
-            // Column2
+            // ıDDataGridViewTextBoxColumn
             // 
-            this.Column2.DataPropertyName = "AdSoyad";
-            this.Column2.HeaderText = "Ad Soyad";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.ıDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.ıDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.ıDDataGridViewTextBoxColumn.Name = "ıDDataGridViewTextBoxColumn";
+            this.ıDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Column3
+            // adSoyadDataGridViewTextBoxColumn
             // 
-            this.Column3.DataPropertyName = "Departman";
-            this.Column3.HeaderText = "Departman";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.adSoyadDataGridViewTextBoxColumn.DataPropertyName = "AdSoyad";
+            this.adSoyadDataGridViewTextBoxColumn.HeaderText = "AdSoyad";
+            this.adSoyadDataGridViewTextBoxColumn.Name = "adSoyadDataGridViewTextBoxColumn";
+            this.adSoyadDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Column4
+            // ıletisimDataGridViewTextBoxColumn
             // 
-            this.Column4.DataPropertyName = "Iletisim";
-            this.Column4.HeaderText = "İletişim";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.ıletisimDataGridViewTextBoxColumn.DataPropertyName = "Iletisim";
+            this.ıletisimDataGridViewTextBoxColumn.HeaderText = "Iletisim";
+            this.ıletisimDataGridViewTextBoxColumn.Name = "ıletisimDataGridViewTextBoxColumn";
+            this.ıletisimDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Column5
+            // departmanDataGridViewTextBoxColumn
             // 
-            this.Column5.DataPropertyName = "Maas";
-            this.Column5.HeaderText = "Maaş";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.departmanDataGridViewTextBoxColumn.DataPropertyName = "Departman";
+            this.departmanDataGridViewTextBoxColumn.HeaderText = "Departman";
+            this.departmanDataGridViewTextBoxColumn.Name = "departmanDataGridViewTextBoxColumn";
+            this.departmanDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // maasDataGridViewTextBoxColumn
+            // 
+            this.maasDataGridViewTextBoxColumn.DataPropertyName = "Maas";
+            this.maasDataGridViewTextBoxColumn.HeaderText = "Maas";
+            this.maasDataGridViewTextBoxColumn.Name = "maasDataGridViewTextBoxColumn";
+            this.maasDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.silToolStripMenuItem,
+            this.güncelleToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // silToolStripMenuItem
+            // 
+            this.silToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.silToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.silToolStripMenuItem.Name = "silToolStripMenuItem";
+            this.silToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.silToolStripMenuItem.Text = "Sil";
+            this.silToolStripMenuItem.Click += new System.EventHandler(this.silToolStripMenuItem_Click);
+            // 
+            // güncelleToolStripMenuItem
+            // 
+            this.güncelleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.güncelleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
+            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.güncelleToolStripMenuItem.Text = "Güncelle";
+            this.güncelleToolStripMenuItem.Click += new System.EventHandler(this.güncelleToolStripMenuItem_Click);
             // 
             // ViewMembers
             // 
@@ -118,6 +153,7 @@
             this.Load += new System.EventHandler(this.ViewMembers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bs)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -126,10 +162,13 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource bs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ıDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adSoyadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ıletisimDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departmanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maasDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem silToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem;
     }
 }

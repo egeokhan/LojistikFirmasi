@@ -12,14 +12,16 @@ namespace LojistikFirmasıProje
 {
     public partial class UpdateMember : Form
     {
-        public UpdateMember()
+        Member _member;
+        public UpdateMember(Member member)
         {
             InitializeComponent();
+            _member = member;
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            string id = txtID.Text;
+            string id = _member.ID;
             string ad = txtAdSoyad.Text;
             string departman = txtDepartman.Text;
             string iletisim = txtIletisim.Text;
@@ -29,25 +31,12 @@ namespace LojistikFirmasıProje
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void UpdateMember_Load(object sender, EventArgs e)
         {
-            string id = txtID.Text;
-            Member member = Member.FindMember(id);
-            if (member.AdSoyad == "") 
-            { 
-                MessageBox.Show("Üye bulunamadı");
-                return;
-            }
-            else
-            {
-                txtAdSoyad.Text = member.AdSoyad;
-                txtDepartman.Text = member.Departman;
-                txtIletisim.Text = member.Iletisim;
-                txtMaas.Text = member.Maas;
-                button1.Enabled = false;
-                btnGuncelle.Enabled = true;
-                txtID.ReadOnly = true;
-            }
+            txtAdSoyad.Text = _member.AdSoyad;
+            txtDepartman.Text = _member.Departman;
+            txtIletisim.Text = _member.Iletisim;
+            txtMaas.Text = _member.Maas;
         }
     }
 }

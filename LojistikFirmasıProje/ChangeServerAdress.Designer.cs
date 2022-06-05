@@ -1,6 +1,6 @@
 ﻿namespace LojistikFirmasıProje
 {
-    partial class DeleteExpedition
+    partial class ChangeServerAdress
     {
         /// <summary>
         /// Required designer variable.
@@ -29,57 +29,54 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtSeferNo = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Gray;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 24);
+            this.label1.Size = new System.Drawing.Size(114, 24);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Sefer NO:";
+            this.label1.Text = "Sunucu Adı:";
             // 
-            // txtSeferNo
+            // textBox1
             // 
-            this.txtSeferNo.BackColor = System.Drawing.Color.Gray;
-            this.txtSeferNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txtSeferNo.ForeColor = System.Drawing.Color.White;
-            this.txtSeferNo.Location = new System.Drawing.Point(111, 7);
-            this.txtSeferNo.Name = "txtSeferNo";
-            this.txtSeferNo.Size = new System.Drawing.Size(152, 26);
-            this.txtSeferNo.TabIndex = 0;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox1.Location = new System.Drawing.Point(132, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(199, 22);
+            this.textBox1.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(144, 37);
+            this.button1.Location = new System.Drawing.Point(179, 41);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 32);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Sil";
+            this.button1.Size = new System.Drawing.Size(109, 32);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Değiştir";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // DeleteExpedition
+            // ChangeServerAdress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(271, 72);
+            this.ClientSize = new System.Drawing.Size(345, 87);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.txtSeferNo);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "DeleteExpedition";
-            this.Text = "Sefer Sil";
+            this.Name = "ChangeServerAdress";
+            this.Text = "Sunucu Adı Değiştir";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,7 +85,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtSeferNo;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
     }
 }

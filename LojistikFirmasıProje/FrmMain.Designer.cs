@@ -33,7 +33,6 @@
             this.seferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seferleriGörüntüleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seferEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.seferSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seferNoyaGöreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personelIDsineGöreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,14 +51,15 @@
             this.yardımToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.firmaGelirGiderleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maaşlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gelirEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.giderEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.destekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kullanımToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.haklarVeLisansToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblTarih = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.gelirEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.giderEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sunucuAdıDeğiştirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,8 +84,7 @@
             this.seferToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.seferToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.seferleriGörüntüleToolStripMenuItem,
-            this.seferEkleToolStripMenuItem,
-            this.seferSilToolStripMenuItem});
+            this.seferEkleToolStripMenuItem});
             this.seferToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.seferToolStripMenuItem.Name = "seferToolStripMenuItem";
             this.seferToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
@@ -96,7 +95,7 @@
             this.seferleriGörüntüleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.seferleriGörüntüleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.seferleriGörüntüleToolStripMenuItem.Name = "seferleriGörüntüleToolStripMenuItem";
-            this.seferleriGörüntüleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seferleriGörüntüleToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.seferleriGörüntüleToolStripMenuItem.Text = "Seferleri Görüntüle";
             this.seferleriGörüntüleToolStripMenuItem.Click += new System.EventHandler(this.seferleriGörüntüleToolStripMenuItem_Click);
             // 
@@ -105,18 +104,9 @@
             this.seferEkleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.seferEkleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.seferEkleToolStripMenuItem.Name = "seferEkleToolStripMenuItem";
-            this.seferEkleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seferEkleToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.seferEkleToolStripMenuItem.Text = "Sefer Ekle";
             this.seferEkleToolStripMenuItem.Click += new System.EventHandler(this.seferEkleToolStripMenuItem_Click);
-            // 
-            // seferSilToolStripMenuItem
-            // 
-            this.seferSilToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
-            this.seferSilToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.seferSilToolStripMenuItem.Name = "seferSilToolStripMenuItem";
-            this.seferSilToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.seferSilToolStripMenuItem.Text = "Sefer Sil";
-            this.seferSilToolStripMenuItem.Click += new System.EventHandler(this.seferSilToolStripMenuItem_Click);
             // 
             // aramaToolStripMenuItem
             // 
@@ -196,7 +186,7 @@
             this.üyeleriGörüntüleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.üyeleriGörüntüleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.üyeleriGörüntüleToolStripMenuItem.Name = "üyeleriGörüntüleToolStripMenuItem";
-            this.üyeleriGörüntüleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.üyeleriGörüntüleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.üyeleriGörüntüleToolStripMenuItem.Text = "Üyeleri Görüntüle";
             this.üyeleriGörüntüleToolStripMenuItem.Click += new System.EventHandler(this.üyeleriGörüntüleToolStripMenuItem_Click);
             // 
@@ -205,7 +195,7 @@
             this.üyeEkleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.üyeEkleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.üyeEkleToolStripMenuItem.Name = "üyeEkleToolStripMenuItem";
-            this.üyeEkleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.üyeEkleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.üyeEkleToolStripMenuItem.Text = "Üye Ekle";
             this.üyeEkleToolStripMenuItem.Click += new System.EventHandler(this.üyeEkleToolStripMenuItem_Click);
             // 
@@ -214,7 +204,7 @@
             this.üyeSilToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.üyeSilToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.üyeSilToolStripMenuItem.Name = "üyeSilToolStripMenuItem";
-            this.üyeSilToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.üyeSilToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.üyeSilToolStripMenuItem.Text = "Üye Sil";
             this.üyeSilToolStripMenuItem.Click += new System.EventHandler(this.üyeSilToolStripMenuItem_Click);
             // 
@@ -223,16 +213,15 @@
             this.üyeGüncelleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.üyeGüncelleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.üyeGüncelleToolStripMenuItem.Name = "üyeGüncelleToolStripMenuItem";
-            this.üyeGüncelleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.üyeGüncelleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.üyeGüncelleToolStripMenuItem.Text = "Üye Güncelle";
-            this.üyeGüncelleToolStripMenuItem.Click += new System.EventHandler(this.üyeGüncelleToolStripMenuItem_Click);
             // 
             // üyeAraToolStripMenuItem
             // 
             this.üyeAraToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.üyeAraToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.üyeAraToolStripMenuItem.Name = "üyeAraToolStripMenuItem";
-            this.üyeAraToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.üyeAraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.üyeAraToolStripMenuItem.Text = "Üye Ara";
             this.üyeAraToolStripMenuItem.Click += new System.EventHandler(this.üyeAraToolStripMenuItem_Click);
             // 
@@ -283,7 +272,7 @@
             this.firmaGelirGiderleriToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.firmaGelirGiderleriToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.firmaGelirGiderleriToolStripMenuItem.Name = "firmaGelirGiderleriToolStripMenuItem";
-            this.firmaGelirGiderleriToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.firmaGelirGiderleriToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.firmaGelirGiderleriToolStripMenuItem.Text = "Firma Gelir Giderleri";
             this.firmaGelirGiderleriToolStripMenuItem.Click += new System.EventHandler(this.firmaGelirGiderleriToolStripMenuItem_Click);
             // 
@@ -292,16 +281,35 @@
             this.maaşlarToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.maaşlarToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.maaşlarToolStripMenuItem.Name = "maaşlarToolStripMenuItem";
-            this.maaşlarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.maaşlarToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.maaşlarToolStripMenuItem.Text = "Maaşları Ver";
             this.maaşlarToolStripMenuItem.Click += new System.EventHandler(this.maaşlarToolStripMenuItem_Click);
+            // 
+            // gelirEkleToolStripMenuItem
+            // 
+            this.gelirEkleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.gelirEkleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.gelirEkleToolStripMenuItem.Name = "gelirEkleToolStripMenuItem";
+            this.gelirEkleToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.gelirEkleToolStripMenuItem.Text = "Gelir Ekle";
+            this.gelirEkleToolStripMenuItem.Click += new System.EventHandler(this.gelirEkleToolStripMenuItem_Click);
+            // 
+            // giderEkleToolStripMenuItem
+            // 
+            this.giderEkleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.giderEkleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.giderEkleToolStripMenuItem.Name = "giderEkleToolStripMenuItem";
+            this.giderEkleToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.giderEkleToolStripMenuItem.Text = "Gider Ekle";
+            this.giderEkleToolStripMenuItem.Click += new System.EventHandler(this.giderEkleToolStripMenuItem_Click);
             // 
             // destekToolStripMenuItem
             // 
             this.destekToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
             this.destekToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kullanımToolStripMenuItem,
-            this.haklarVeLisansToolStripMenuItem});
+            this.haklarVeLisansToolStripMenuItem,
+            this.sunucuAdıDeğiştirToolStripMenuItem});
             this.destekToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.destekToolStripMenuItem.Name = "destekToolStripMenuItem";
             this.destekToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
@@ -352,23 +360,14 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // gelirEkleToolStripMenuItem
+            // sunucuAdıDeğiştirToolStripMenuItem
             // 
-            this.gelirEkleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
-            this.gelirEkleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.gelirEkleToolStripMenuItem.Name = "gelirEkleToolStripMenuItem";
-            this.gelirEkleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gelirEkleToolStripMenuItem.Text = "Gelir Ekle";
-            this.gelirEkleToolStripMenuItem.Click += new System.EventHandler(this.gelirEkleToolStripMenuItem_Click);
-            // 
-            // giderEkleToolStripMenuItem
-            // 
-            this.giderEkleToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
-            this.giderEkleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.giderEkleToolStripMenuItem.Name = "giderEkleToolStripMenuItem";
-            this.giderEkleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.giderEkleToolStripMenuItem.Text = "Gider Ekle";
-            this.giderEkleToolStripMenuItem.Click += new System.EventHandler(this.giderEkleToolStripMenuItem_Click);
+            this.sunucuAdıDeğiştirToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.sunucuAdıDeğiştirToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.sunucuAdıDeğiştirToolStripMenuItem.Name = "sunucuAdıDeğiştirToolStripMenuItem";
+            this.sunucuAdıDeğiştirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sunucuAdıDeğiştirToolStripMenuItem.Text = "Sunucu Adı Değiştir";
+            this.sunucuAdıDeğiştirToolStripMenuItem.Click += new System.EventHandler(this.sunucuAdıDeğiştirToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -403,7 +402,6 @@
         private System.Windows.Forms.ToolStripMenuItem yardımToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem seferleriGörüntüleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seferEkleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem seferSilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seferNoyaGöreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personelIDsineGöreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tariheGöreToolStripMenuItem;
@@ -426,6 +424,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem gelirEkleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem giderEkleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sunucuAdıDeğiştirToolStripMenuItem;
     }
 }
 

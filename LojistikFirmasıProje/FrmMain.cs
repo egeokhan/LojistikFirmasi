@@ -52,13 +52,6 @@ namespace LojistikFirmasıProje
             viewexpeditions.Show();
         }
 
-        private void seferSilToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DeleteExpedition deleteExpidition = new DeleteExpedition();
-            deleteExpidition.MdiParent = this;
-            deleteExpidition.Show();
-        }
-
         private void seferNoyaGöreToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchWithExpeditionNO swen = new SearchWithExpeditionNO();
@@ -114,14 +107,6 @@ namespace LojistikFirmasıProje
             dm.MdiParent = this;
             dm.Show();
         }
-
-        private void üyeGüncelleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            UpdateMember um = new UpdateMember();
-            um.MdiParent = this;
-            um.Show();
-        }
-
         private void üyeAraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchMember sm = new SearchMember();
@@ -190,6 +175,13 @@ namespace LojistikFirmasıProje
             FrmGiderEkle frm = new FrmGiderEkle();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void sunucuAdıDeğiştirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeServerAdress csa = new ChangeServerAdress();
+            csa.MdiParent = this;
+            csa.Show();
         }
     }
 }

@@ -33,5 +33,21 @@ namespace LojistikFirmasıProje
         {
             memberList = Member.LoadMembers();
         }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Member seciliUye = (Member)bs.Current;
+            DialogResult dr =MessageBox.Show("Silmek istediğinize emin misiniz?","Onay",MessageBoxButtons.YesNo);
+            if (dr == DialogResult.No) return;
+            Member.DeleteMember(seciliUye.ID);
+            bs.DataSource = Member.LoadMembers();
+        }
+
+        private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateMember frm = new UpdateMember((Member)bs.Current);
+            frm.ShowDialog();
+            bs.DataSource = Member.LoadMembers();
+        }
     }
 }

@@ -34,5 +34,15 @@ namespace LojistikFirmasıProje
         {
             bs.DataSource = seferler;
         }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeferIslem sefer = (SeferIslem)bs.Current;
+            DialogResult dr = MessageBox.Show("Silmek istediğinize emin misiniz?","Onay",MessageBoxButtons.YesNo);
+            if (dr == DialogResult.No) return;
+            SeferIslem.SeferSil(sefer.SeferId);
+            bs.DataSource = SeferIslem.SeferleriGoruntule();
+
+        }
     }
 }
