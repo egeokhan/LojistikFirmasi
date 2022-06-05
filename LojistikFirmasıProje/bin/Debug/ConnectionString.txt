@@ -1,0 +1,1 @@
+Server=DESKTOP-PIBOAUL;Database=Lojistik;Trusted_Connection=True;
